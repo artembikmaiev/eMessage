@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using єMessage.Commands;
@@ -12,8 +13,8 @@ namespace єMessage.ViewModels
 {
     public class SingInPageViewModel : ViewModelBase
     {
-        private int _username;
-        public int Username
+        private string _username;
+        public string Username
         {
             get
             {
@@ -26,8 +27,8 @@ namespace єMessage.ViewModels
             }
         }
 
-        private int _password;
-        public int Password
+        private string _password;
+        public string Password
         {
             get
             {
@@ -39,6 +40,7 @@ namespace єMessage.ViewModels
                 OnPropertyChanged(nameof(Password));
             }
         }
+
         public ICommand SingUpCommand { get; }
 
         public SingInPageViewModel(NavigationServices logInViewNavigateService)

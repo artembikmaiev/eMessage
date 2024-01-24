@@ -28,10 +28,8 @@ namespace єMessage.Views
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                // Get the parent window
                 var parentWindow = Window.GetWindow(this);
 
-                // Perform dragging only if there is a parent window
                 if (parentWindow != null)
                 {
                     parentWindow.DragMove();

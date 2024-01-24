@@ -33,7 +33,7 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Sign Up" Style="{StaticResource TitleText}" />
-                    <TextBlock Text="Enter your personal info and create new account to connect us" Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
+                    <TextBlock Text="Input your personal info and create new account to connect us" Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
                     <Button Command="{Binding SingUpCommand}" Content="Sign Up" Style="{StaticResource button}" />
                 </StackPanel>
             </Grid>
