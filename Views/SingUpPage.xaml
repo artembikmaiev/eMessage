@@ -34,7 +34,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Sign In" Style="{StaticResource TitleText}" />
                     <TextBlock Text="Input your personal info and enter in your account " Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
-                    <Button Command="" Content="Sign In" Style="{StaticResource button}" />
+                    <Button Command="{Binding SingInPageCommand}" Content="Sign In" Style="{StaticResource button}" />
                 </StackPanel>
             </Grid>
         </Border>

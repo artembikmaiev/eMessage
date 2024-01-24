@@ -8,15 +8,13 @@ using єMessage.ViewModels;
 
 namespace єMessage.Commands
 {
-    public class SingUpCommand : CommandBase
+    public class SingUpPageCommand : CommandBase
     {
         private readonly SingUpPageViewModel _singUpPageViewModel;
-        private readonly NavigationServices _singUpViewNavigateService;
 
-        public SingUpCommand(SingUpPageViewModel singUpPageViewModel, NavigationServices singUpViewNavigateService)
+        public SingUpPageCommand(SingUpPageViewModel singUpPageViewModel, NavigationServices singUpViewNavigateService)
         {
             _singUpPageViewModel = singUpPageViewModel;
-            _singUpViewNavigateService = singUpViewNavigateService;
 
             _singUpPageViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }

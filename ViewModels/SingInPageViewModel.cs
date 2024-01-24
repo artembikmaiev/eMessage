@@ -41,11 +41,11 @@ namespace єMessage.ViewModels
             }
         }
 
-        public ICommand SingUpCommand { get; }
+        public ICommand SingUpPageCommand { get; }
 
-        public SingInPageViewModel(NavigationServices logInViewNavigateService)
+        public SingInPageViewModel(NavigationServices singInViewNavigateService)
         {
-            SingUpCommand = new NavigationCommand(logInViewNavigateService);
+            SingUpPageCommand = new NavigationCommand(singInViewNavigateService);
         }
     }
 }
