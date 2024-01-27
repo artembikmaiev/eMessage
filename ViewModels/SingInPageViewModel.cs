@@ -41,6 +41,21 @@ namespace єMessage.ViewModels
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get
+            {
+                return _errorMessage;
+            }
+
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public ICommand SingUpPageCommand { get; }
 
         public SingInPageViewModel(NavigationServices singInViewNavigateService)
