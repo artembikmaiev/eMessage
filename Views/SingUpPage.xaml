@@ -63,9 +63,9 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/Images/Email.png" Height="20" />
+                        <Image Source="/Images/user.png" Height="20" />
                         <TextBlock x:Name="textUsername" MouseDown="textUsername_MouseDown" Text="Username" Style="{StaticResource textHint}" />
-                        <TextBox Name="txtUsername" TextChanged="txtUsername_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBox Name="txtUsername" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtUsername_TextChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -78,7 +78,7 @@
 
                         <Image Source="/Images/Email.png" Height="20" />
                         <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" />
-                        <TextBox Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBox Name="txtEmail" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -91,7 +91,7 @@
 
                         <Image Source="/Images/Lock.png" Height="20" />
                         <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
-                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource textBox}" />
+                        <TextBox x:Name="passwordBox" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" TextChanged="passwordBox_PasswordChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -102,8 +102,8 @@
                    FontFamily="Montserrat"                             
                    Margin="0,5,0,0"
                    TextWrapping="Wrap" Width="325"/>
-                
-                <Button Content="Sign Up" Click="Button_Click" Style="{StaticResource mainButton}" />
+
+                <Button Content="Sign Up" Command="{Binding createAccountCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource mainButton}" />
                 
             </StackPanel>
         </Border>

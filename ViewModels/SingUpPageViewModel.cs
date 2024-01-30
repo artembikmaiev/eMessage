@@ -11,6 +11,48 @@ namespace єMessage.ViewModels
 {
     public class SingUpPageViewModel : ViewModelBase
     {
+        private string _username;
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value;
+                OnPropertyChanged(nameof(Username));
+            }
+        }
+
+        private string _email;
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        private string _password;
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -27,10 +69,12 @@ namespace єMessage.ViewModels
         }
 
         public ICommand SingInPageCommand { get; }
+        public ICommand createAccountCommand { get; }
 
         public SingUpPageViewModel(NavigationServices singUpViewNavigateService)
         {
             SingInPageCommand = new NavigationCommand(singUpViewNavigateService);
+            createAccountCommand = new CreateAccountCommand(this);
         }
     }
 }

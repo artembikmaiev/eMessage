@@ -15,6 +15,7 @@
     <None Remove="Images\google.png" />
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\Lock.png" />
+    <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\user.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
