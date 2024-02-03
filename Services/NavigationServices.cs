@@ -16,7 +16,7 @@ namespace єMessage.Services
         public NavigationServices(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
         {
             _navigationStore = navigationStore;
-            _createViewModel = createViewModel;
+            _createViewModel = createViewModel;  
         }
 
         public void Navigate()

@@ -13,17 +13,17 @@ namespace єMessage.ViewModels
 {
     public class SingInPageViewModel : ViewModelBase
     {
-        private string _username;
-        public string Username
+        private string _email;
+        public string Email
         {
             get
             {
-                return _username;
+                return _email;
             }
             set
             {
-                _username = value;
-                OnPropertyChanged(nameof(Username));
+                _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -56,11 +56,28 @@ namespace єMessage.ViewModels
             }
         }
 
+        private bool _isViewVisible = true;
+        public bool IsViewVisible
+        {
+            get
+            {
+                return _isViewVisible;
+            }
+
+            set
+            {
+                _isViewVisible = value;
+                OnPropertyChanged(nameof(IsViewVisible));
+            }
+        }
+
         public ICommand SingUpPageCommand { get; }
+        public ICommand ChatWindowCommand { get; }
 
         public SingInPageViewModel(NavigationServices singInViewNavigateService)
         {
             SingUpPageCommand = new NavigationCommand(singInViewNavigateService);
+            ChatWindowCommand = new NavigationCommand(singInViewNavigateService);
         }
     }
 }

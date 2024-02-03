@@ -21,6 +21,9 @@
             <DataTemplate DataType="{x:Type vsm:SingUpPageViewModel}">
                 <views:SingUpPage/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vsm:ChatWindowViewModel}">
+                <views:ChatWindow/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

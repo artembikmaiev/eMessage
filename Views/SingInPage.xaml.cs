@@ -44,7 +44,15 @@ namespace єMessage.Views
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(passwordBox.Password) && passwordBox.Password.Length > 0)
+            //string text = passwordBox.Text;
+
+            //passwordBox.Text = new string('*', text.Length);
+
+            //passwordBox.CaretIndex = text.Length;
+
+            //textPassword.Visibility = string.IsNullOrEmpty(text) ? Visibility.Visible : Visibility.Collapsed;
+
+            if (!string.IsNullOrEmpty(passwordBox.Text) && passwordBox.Text.Length > 0)
                 textPassword.Visibility = Visibility.Collapsed;
             else
                 textPassword.Visibility = Visibility.Visible;
@@ -57,10 +65,7 @@ namespace єMessage.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(passwordBox.Password))
-            {
-                MessageBox.Show("Successfully Signed In");
-            }
+            
         }
 
         private void txtEmail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
