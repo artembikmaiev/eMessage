@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using єMessage.Commands;
 using єMessage.Services;
+using єMessage.Stores;
 
 namespace єMessage.ViewModels
 {
@@ -72,12 +73,13 @@ namespace єMessage.ViewModels
         }
 
         public ICommand SingUpPageCommand { get; }
-        public ICommand ChatWindowCommand { get; }
 
-        public SingInPageViewModel(NavigationServices singInViewNavigateService)
+        public ICommand SingInCommand { get; }
+
+        public SingInPageViewModel(NavigationStore navigationStore)
         {
-            SingUpPageCommand = new NavigationCommand(singInViewNavigateService);
-            ChatWindowCommand = new NavigationCommand(singInViewNavigateService);
+            SingUpPageCommand = new NavigationCommand<SingUpPageViewModel>(new NavigationServices<SingUpPageViewModel>(navigationStore, () => new SingUpPageViewModel(navigationStore)));
+            SingInCommand = new SingInCommand(this, new NavigationServices<ChatWindowViewModel>(navigationStore, () => new ChatWindowViewModel(navigationStore)));
         }
     }
 }

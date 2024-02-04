@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using єMessage.Services;
+using єMessage.Stores;
+using єMessage.ViewModels;
 
 namespace єMessage.Commands
 {
-    public class NavigationCommand : CommandBase
+    public class NavigationCommand<TViewModel> : CommandBase
+        where TViewModel : ViewModelBase
     {
-        private readonly NavigationServices _navigationServices;
+        private readonly NavigationServices<TViewModel> _navigationService;
 
-        public NavigationCommand(NavigationServices navigationServices)
+        public NavigationCommand(NavigationServices<TViewModel> navigationService)
         {
-            _navigationServices = navigationServices;
+            _navigationService = navigationService;
         }
 
         public override void Execute(object parameter)
         {
-            _navigationServices.Navigate();
+            _navigationService.Navigate();
         }
     }
 }

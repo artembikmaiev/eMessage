@@ -12,35 +12,22 @@ namespace єMessage
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore _navigationStore;
-
-        public App()
-        {
-            _navigationStore = new NavigationStore();
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = CreateLoginPage();
+            NavigationStore navigationStore = new NavigationStore();
+
+            navigationStore.CurrentViewModel = new SingInPageViewModel(navigationStore);
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new MainViewModel(navigationStore)
             };
             MainWindow.Show();
 
             base.OnStartup(e);
         }
 
-        private SingInPageViewModel CreateLoginPage()
-        {
-            return new SingInPageViewModel(new NavigationServices(_navigationStore, CreateSignUpPage));
-        }
-
-        private SingUpPageViewModel CreateSignUpPage()
-        {
-            return new SingUpPageViewModel(new NavigationServices(_navigationStore, CreateLoginPage));
-        }
+        
     }
 
 }

@@ -8,15 +8,16 @@ using єMessage.ViewModels;
 
 namespace єMessage.Services
 {
-    public class NavigationServices
+    public class NavigationServices<TViewModel>
+        where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
-        public Func<ViewModelBase> _createViewModel;
+        private readonly Func<TViewModel> _createViewModel;
 
-        public NavigationServices(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
+        public NavigationServices(NavigationStore navigationStore, Func<TViewModel> createViewModel)
         {
             _navigationStore = navigationStore;
-            _createViewModel = createViewModel;  
+            _createViewModel = createViewModel;
         }
 
         public void Navigate()

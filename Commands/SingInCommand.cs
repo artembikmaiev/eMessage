@@ -9,6 +9,7 @@ using System.Windows.Input;
 using єMessage.Models;
 using єMessage.Repositories;
 using єMessage.Services;
+using єMessage.Stores;
 using єMessage.ViewModels;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -17,15 +18,13 @@ namespace єMessage.Commands
     public class SingInCommand : CommandBase
     {
         private readonly SingInPageViewModel _singInPageViewModel;
-        private readonly NavigationServices _singUpPageNavigationServices;
+        private readonly NavigationServices<ChatWindowViewModel> _navigationService;
         private readonly IUserRepository _userRepository;
 
-        
-
-        public SingInCommand(SingInPageViewModel singInPageViewModel, NavigationServices singUpPageNavigationServices)
+        public SingInCommand(SingInPageViewModel singInPageViewModel, NavigationServices<ChatWindowViewModel> navigationService)
         {
             _singInPageViewModel = singInPageViewModel;
-            _singUpPageNavigationServices = singUpPageNavigationServices;
+            _navigationService = navigationService;
             _userRepository = new UserRepository();
             _singInPageViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
@@ -49,6 +48,8 @@ namespace єMessage.Commands
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(_singInPageViewModel.Email), null);
                 _singInPageViewModel.IsViewVisible = false;
+
+                _navigationService.Navigate();
 
             }
             else

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using єMessage.Commands;
 using єMessage.Services;
+using єMessage.Stores;
 
 namespace єMessage.ViewModels
 {
@@ -71,10 +72,9 @@ namespace єMessage.ViewModels
         public ICommand SingInPageCommand { get; }
         public ICommand createAccountCommand { get; }
 
-        public SingUpPageViewModel(NavigationServices singUpViewNavigateService)
+        public SingUpPageViewModel(NavigationStore navigationStore)
         {
-            SingInPageCommand = new NavigationCommand(singUpViewNavigateService);
-            createAccountCommand = new CreateAccountCommand(this);
+            SingInPageCommand = new NavigationCommand<SingInPageViewModel>(new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
         }
     }
 }

@@ -89,8 +89,8 @@
                    FontFamily="Montserrat"                             
                    Margin="0,5,0,0"
                    TextWrapping="Wrap" Width="325"/>
-                
-                <Button Content="Sign In"  Style="{StaticResource mainButton}" />
+
+                <Button Content="Sign In" Command="{Binding SingInCommand}" Style="{StaticResource mainButton}" />
             </StackPanel>
         </Border>
 
