@@ -54,6 +54,20 @@ namespace єMessage.ViewModels
             }
         }
 
+        private string _repeatPassword;
+        public string RepeatPassword
+        {
+            get
+            {
+                return _repeatPassword;
+            }
+            set
+            {
+                _repeatPassword = value;
+                OnPropertyChanged(nameof(RepeatPassword));
+            }
+        }
+
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -70,11 +84,12 @@ namespace єMessage.ViewModels
         }
 
         public ICommand SingInPageCommand { get; }
-        public ICommand createAccountCommand { get; }
+        public ICommand СreateAccountCommand { get; }
 
         public SingUpPageViewModel(NavigationStore navigationStore)
         {
             SingInPageCommand = new NavigationCommand<SingInPageViewModel>(new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
+            СreateAccountCommand = new CreateAccountCommand(this);
         }
     }
 }

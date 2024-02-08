@@ -54,7 +54,7 @@ namespace єMessage.Commands
             }
             else
             {
-                _singInPageViewModel.ErrorMessage = "* Invalid username or password";
+                _singInPageViewModel.ErrorMessage = "* Invalid email or password";
             }
         }
 

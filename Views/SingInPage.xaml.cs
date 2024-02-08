@@ -22,7 +22,7 @@ namespace єMessage.Views
     {
         public SingInPage()
         {
-            InitializeComponent();
+            InitializeComponent();;
         }
         private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -40,32 +40,6 @@ namespace єMessage.Views
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            //string text = passwordBox.Text;
-
-            //passwordBox.Text = new string('*', text.Length);
-
-            //passwordBox.CaretIndex = text.Length;
-
-            //textPassword.Visibility = string.IsNullOrEmpty(text) ? Visibility.Visible : Visibility.Collapsed;
-
-            if (!string.IsNullOrEmpty(passwordBox.Text) && passwordBox.Text.Length > 0)
-                textPassword.Visibility = Visibility.Collapsed;
-            else
-                textPassword.Visibility = Visibility.Visible;
-        }
-
-        private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            passwordBox.Focus();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void txtEmail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

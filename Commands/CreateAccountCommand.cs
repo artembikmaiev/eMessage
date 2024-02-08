@@ -19,23 +19,32 @@ namespace єMessage.ViewModels
 
         public override bool CanExecute(object parameter)
         {
-            return !string.IsNullOrEmpty(_singUpPageViewModel.Username) &&
-                   !string.IsNullOrEmpty(_singUpPageViewModel.Email) &&
-                   !string.IsNullOrEmpty(_singUpPageViewModel.Password) &&
-                   _singUpPageViewModel.Password.Length >= 6 &&
-                 base.CanExecute(parameter);
+            bool validData;
+            if (string.IsNullOrWhiteSpace(_singUpPageViewModel.Email) || _singUpPageViewModel.Email.Length <= 11 ||
+                string.IsNullOrWhiteSpace(_singUpPageViewModel.Username) || _singUpPageViewModel.Username.Length <= 1 ||
+                _singUpPageViewModel.Password == null || _singUpPageViewModel.Password.Length <= 6 ||
+                _singUpPageViewModel.Password == null || _singUpPageViewModel.Password.Length <= 6)
+            {
+                validData = false;
+            }
+            else
+            {
+                validData = true;
+            }
+            return validData;
         }
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SingUpPageViewModel.Username) ||
                 e.PropertyName == nameof(SingUpPageViewModel.Email) || 
-                e.PropertyName == nameof(SingUpPageViewModel.Password))
+                e.PropertyName == nameof(SingUpPageViewModel.Password) ||
+                e.PropertyName == nameof(SingUpPageViewModel.RepeatPassword))
             {
                 OnCanExecuteChanged();
             }
