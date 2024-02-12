@@ -68,6 +68,21 @@ namespace єMessage.ViewModels
             }
         }
 
+        private bool _isViewVisible = true;
+        public bool IsViewVisible
+        {
+            get
+            {
+                return _isViewVisible;
+            }
+
+            set
+            {
+                _isViewVisible = value;
+                OnPropertyChanged(nameof(IsViewVisible));
+            }
+        }
+
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -89,7 +104,7 @@ namespace єMessage.ViewModels
         public SingUpPageViewModel(NavigationStore navigationStore)
         {
             SingInPageCommand = new NavigationCommand<SingInPageViewModel>(new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
-            СreateAccountCommand = new CreateAccountCommand(this);
+            СreateAccountCommand = new CreateAccountCommand(this, new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
         }
     }
 }

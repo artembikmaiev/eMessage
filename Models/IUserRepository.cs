@@ -12,5 +12,9 @@ namespace єMessage.Models
     public interface IUserRepository
     {
         bool AuthenticateUser(string email, string password);
+
+        void AddUser (string email, string username, string password);
+
+        bool IsUserRegistered(string email);
     }
 }
