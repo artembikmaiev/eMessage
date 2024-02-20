@@ -15,8 +15,6 @@ namespace єMessage.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-
-
         public void AddUser(string email, string username, string password)
         {
             using (var connection = GetConnection())
@@ -46,6 +44,32 @@ namespace єMessage.Repositories
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
             return validUser;
+        }
+
+        public (string, string) GetNamesByEmail(string email)
+        {
+            string firstName = "";
+            string secondName = "";
+
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT FirstName, LastName FROM UsersInfo WHERE email = @email";
+                command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        firstName = reader["FirstName"].ToString();
+                        secondName = reader["LastName"].ToString();
+                    }
+                }
+            }
+
+            return (firstName, secondName);
         }
 
         public bool IsUserRegistered(string email)

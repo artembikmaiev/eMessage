@@ -79,7 +79,7 @@ namespace єMessage.ViewModels
         public SingInPageViewModel(NavigationStore navigationStore)
         {
             SingUpPageCommand = new NavigationCommand<SingUpPageViewModel>(new NavigationServices<SingUpPageViewModel>(navigationStore, () => new SingUpPageViewModel(navigationStore)));
-            SingInCommand = new SingInCommand(this, new NavigationServices<ChatWindowViewModel>(navigationStore, () => new ChatWindowViewModel(navigationStore)));
+            SingInCommand = new SingInCommand(this, new NavigationServices<SplashScreenViewModel>(navigationStore, () => new SplashScreenViewModel(navigationStore, Email)));
         }
     }
 }

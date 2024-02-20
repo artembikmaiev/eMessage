@@ -99,12 +99,12 @@ namespace єMessage.ViewModels
         }
 
         public ICommand SingInPageCommand { get; }
-        public ICommand СreateAccountCommand { get; }
+        public ICommand СreateAccount { get; }
 
         public SingUpPageViewModel(NavigationStore navigationStore)
         {
             SingInPageCommand = new NavigationCommand<SingInPageViewModel>(new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
-            СreateAccountCommand = new CreateAccountCommand(this, new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
+            СreateAccount = new CreateAccountCommand(this, new NavigationServices<SingInPageViewModel>(navigationStore, () => new SingInPageViewModel(navigationStore)));
         }
     }
 }

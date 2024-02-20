@@ -26,8 +26,5 @@ namespace єMessage
 
             base.OnStartup(e);
         }
-
-        
     }
-
 }

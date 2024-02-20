@@ -115,7 +115,7 @@
                    Margin="0,5,0,0"
                    TextWrapping="Wrap" Width="325"/>
 
-                <Button Content="Sign Up" Command="{Binding СreateAccountCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource mainButton}" />
+                <Button Content="Sign Up" Command="{Binding СreateAccount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource mainButton}" />
                 
             </StackPanel>
         </Border>

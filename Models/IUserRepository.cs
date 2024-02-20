@@ -16,5 +16,7 @@ namespace єMessage.Models
         void AddUser (string email, string username, string password);
 
         bool IsUserRegistered(string email);
+
+        (string, string) GetNamesByEmail(string email);
     }
 }

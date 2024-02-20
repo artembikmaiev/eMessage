@@ -56,7 +56,7 @@ namespace єMessage.ViewModels
             {
                 _singUpPageViewModel.ErrorMessage = "* Passwords are not the same.";
             }
-            else if (isUserRegistered)
+            else
             {
                 _userRepository.AddUser(_singUpPageViewModel.Email, _singUpPageViewModel.Username, _singUpPageViewModel.Password);
 
@@ -71,7 +71,7 @@ namespace єMessage.ViewModels
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SingUpPageViewModel.Username) ||
-                e.PropertyName == nameof(SingUpPageViewModel.Email) || 
+                e.PropertyName == nameof(SingUpPageViewModel.Email) ||
                 e.PropertyName == nameof(SingUpPageViewModel.Password) ||
                 e.PropertyName == nameof(SingUpPageViewModel.RepeatPassword))
             {

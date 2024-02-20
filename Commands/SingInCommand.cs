@@ -18,10 +18,10 @@ namespace єMessage.Commands
     public class SingInCommand : CommandBase
     {
         private readonly SingInPageViewModel _singInPageViewModel;
-        private readonly NavigationServices<ChatWindowViewModel> _navigationService;
+        private readonly NavigationServices<SplashScreenViewModel> _navigationService;
         private readonly IUserRepository _userRepository;
 
-        public SingInCommand(SingInPageViewModel singInPageViewModel, NavigationServices<ChatWindowViewModel> navigationService)
+        public SingInCommand(SingInPageViewModel singInPageViewModel, NavigationServices<SplashScreenViewModel> navigationService)
         {
             _singInPageViewModel = singInPageViewModel;
             _navigationService = navigationService;

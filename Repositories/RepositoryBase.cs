@@ -14,6 +14,7 @@ namespace єMessage.Repositories
         public RepositoryBase()
         {
             _connectionString = @"Data Source=DESKTOP-0KOAAD4\SQLEXPRESS;Initial Catalog=[Users];Integrated Security=True;TrustServerCertificate=True;";
+
         }
 
         protected SqlConnection GetConnection()
