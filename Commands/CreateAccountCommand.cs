@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 using єMessage.Commands;
+using єMessage.Encryption;
 using єMessage.Models;
 using єMessage.Repositories;
 using єMessage.Services;
@@ -58,7 +59,7 @@ namespace єMessage.ViewModels
             }
             else
             {
-                _userRepository.AddUser(_singUpPageViewModel.Email, _singUpPageViewModel.Username, _singUpPageViewModel.Password);
+                _userRepository.AddUser(_singUpPageViewModel.Email, _singUpPageViewModel.Username, SHA256Hash.hashPassword(_singUpPageViewModel.Password));
 
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(_singUpPageViewModel.Email), null);

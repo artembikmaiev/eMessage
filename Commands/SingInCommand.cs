@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using єMessage.Encryption;
 using єMessage.Models;
 using єMessage.Repositories;
 using єMessage.Services;
@@ -42,7 +43,7 @@ namespace єMessage.Commands
 
         public override void Execute(object parameter)
         {
-            var isValidUser = _userRepository.AuthenticateUser(_singInPageViewModel.Email, _singInPageViewModel.Password);
+            var isValidUser = _userRepository.AuthenticateUser(_singInPageViewModel.Email, SHA256Hash.hashPassword(_singInPageViewModel.Password));
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
