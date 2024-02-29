@@ -3,11 +3,13 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using єMessage.Models;
+using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -46,31 +48,46 @@ namespace єMessage.Repositories
             return validUser;
         }
 
-        public (string, string) GetNamesByEmail(string email)
+        public UserInfo GetNamesByEmail(string email)
         {
-            string firstName = "";
-            string secondName = "";
+            UserInfo userInfo = new UserInfo();
 
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT FirstName, LastName FROM UsersInfo WHERE email = @email";
-                command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                command.CommandText = "SELECT FirstName, LastName, Username, AvatarImage FROM UsersInfo WHERE email = @Email";
+                command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
 
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        firstName = reader["FirstName"].ToString();
-                        secondName = reader["LastName"].ToString();
+                        userInfo.FirstName = reader["FirstName"].ToString();
+                        userInfo.LastName = reader["LastName"].ToString();
+                        userInfo.Username = reader["Username"].ToString();
+
+                        // Отримання фото як масив байтів
+                        if (reader["AvatarImage"] != DBNull.Value)
+                        {
+                            userInfo.AvatarImage = (byte[])reader["AvatarImage"];
+                        }
+                        else
+                        {
+                            string imagePath = "F:\\Projects\\Курсова робота\\єMessage\\Images\\avatar.png";
+                            byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+
+                            userInfo.AvatarImage = imageBytes;
+                        }
                     }
                 }
             }
 
-            return (firstName, secondName);
+            return userInfo;
         }
+
+
 
         public bool IsUserRegistered(string email)
         {

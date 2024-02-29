@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\camera.png" />
     <None Remove="Images\close.png" />
     <None Remove="Images\Email.png" />
     <None Remove="Images\facebook.png" />
@@ -16,19 +17,36 @@
     <None Remove="Images\knteu_logo_200.png" />
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\Lock.png" />
+    <None Remove="Images\phone.png" />
+    <None Remove="Images\plus.png" />
+    <None Remove="Images\send.png" />
     <None Remove="Images\splashScreen.jpg" />
     <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
+    <PackageReference Include="System.Net.WebSockets" Version="4.3.0" />
+    <PackageReference Include="WebSocketSharp-NonPreRelease" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\camera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\close.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\knteu_logo_200.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\phone.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\plus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\send.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\splashScreen.jpg">

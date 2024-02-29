@@ -17,6 +17,6 @@ namespace єMessage.Models
 
         bool IsUserRegistered(string email);
 
-        (string, string) GetNamesByEmail(string email);
+        UserInfo GetNamesByEmail(string email);
     }
 }

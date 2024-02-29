@@ -11,7 +11,6 @@ namespace єMessage.ViewModels
     {
         private readonly User _user;
 
-        public string Username => _user.Username;
         public string Password => _user.Password;
 
         public string Email => _user.Email;

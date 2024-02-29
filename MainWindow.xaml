@@ -12,6 +12,7 @@
         WindowStyle="None"
         AllowsTransparency="True" 
         Background="Transparent" 
+        ResizeMode="CanResizeWithGrip"
         Height="500" 
         Width="800">
     <ContentControl Content="{Binding CurrentViewModel}">

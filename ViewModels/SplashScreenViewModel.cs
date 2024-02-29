@@ -21,7 +21,7 @@ namespace єMessage.ViewModels
         {
             _email = email;
             _userRepository = new UserRepository();
-            _navigationService = new NavigationServices<ChatWindowViewModel>(navigationStore, () => new ChatWindowViewModel(navigationStore));
+            _navigationService = new NavigationServices<ChatWindowViewModel>(navigationStore, () => new ChatWindowViewModel(navigationStore, _email));
 
             Initialize();
         }
@@ -48,21 +48,22 @@ namespace єMessage.ViewModels
 
         private async Task GetNamesAndNavigate(string email)
         {
-            (string firstName, string lastName) = _userRepository.GetNamesByEmail(email);
+            UserInfo userInfo = _userRepository.GetNamesByEmail(email);
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            if (userInfo == null || string.IsNullOrEmpty(userInfo.FirstName) || string.IsNullOrEmpty(userInfo.LastName))
             {
                 FullName = $"Welcome!";
             }
             else
             {
-                FullName = $"Welcome, {firstName} {lastName}";
+                FullName = $"Welcome, {userInfo.FirstName} {userInfo.LastName}";
             }
         }
 
+
         private async Task DelayNavigation()
         {
-            await Task.Delay(10000);
+            await Task.Delay(1000);
             _navigationService.Navigate();
         }
     }
