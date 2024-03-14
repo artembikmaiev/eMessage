@@ -63,7 +63,7 @@ namespace єMessage.ViewModels
 
         private async Task DelayNavigation()
         {
-            await Task.Delay(1000);
+            await Task.Delay(5000);
             _navigationService.Navigate();
         }
     }

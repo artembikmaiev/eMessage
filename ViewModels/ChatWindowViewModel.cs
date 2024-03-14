@@ -98,10 +98,8 @@ namespace єMessage.ViewModels
                     Messages.Add(new MessageModel
                     {
                         Message = message,
-                        Username = userInfo.Username,
                         ImageSource = userInfo.AvatarImage,
                         Time = DateTime.Now,
-                        UsernameColor = "#409aff",
                         IsNativeOrigin = true,
                     });
                 });

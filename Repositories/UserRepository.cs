@@ -75,7 +75,7 @@ namespace єMessage.Repositories
                         }
                         else
                         {
-                            string imagePath = "F:\\Projects\\Курсова робота\\єMessage\\Images\\avatar.png";
+                            string imagePath = "Images/avatar.png";
                             byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
 
                             userInfo.AvatarImage = imageBytes;

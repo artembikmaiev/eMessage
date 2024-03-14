@@ -13,7 +13,8 @@ namespace єMessage.Commands
     public class SendCommand : CommandBase
     {
         private readonly ChatWindowViewModel _chatWindowViewModel;
-        WebSocket _ws;
+        private WebSocket _ws;
+
         public ObservableCollection<MessageModel> Messages { get; set; }
 
         public SendCommand(ChatWindowViewModel chatWindowViewModel, WebSocket ws)
@@ -28,7 +29,7 @@ namespace єMessage.Commands
         {
             if (_chatWindowViewModel != null)
             {
-                string message = $"{_chatWindowViewModel.Message}";
+                string message = $"{_chatWindowViewModel.Username}: {_chatWindowViewModel.Message}";
 
                 // Відправка повідомлення через WebSocket
                 _ws.Send(message);

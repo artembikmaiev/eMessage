@@ -72,4 +72,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Images\avatar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
