@@ -11,6 +11,7 @@ namespace єMessage.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
+        public string Status { get; set; }
         public byte[] AvatarImage { get; set; }
     }
 }

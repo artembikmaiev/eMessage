@@ -41,9 +41,10 @@ namespace єMessage.Commands
             return validData;
         }
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            var isValidUser = _userRepository.AuthenticateUser(_singInPageViewModel.Email, SHA256Hash.hashPassword(_singInPageViewModel.Password));
+            var isValidUser = await _userRepository.AuthenticateUser(_singInPageViewModel.Email,SHA256Hash.hashPassword(_singInPageViewModel.Password));
+
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
@@ -51,7 +52,6 @@ namespace єMessage.Commands
                 _singInPageViewModel.IsViewVisible = false;
 
                 _navigationService.Navigate();
-
             }
             else
             {

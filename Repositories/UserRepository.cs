@@ -17,36 +17,37 @@ namespace єMessage.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void AddUser(string email, string username, string password)
+        public async Task AddUser(string email, string username, string password)
         {
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
-                connection.Open();
+                await connection.OpenAsync();
                 command.Connection = connection;
                 command.CommandText = "INSERT INTO UsersInfo (email, username, [password]) VALUES (@email, @username, @password)";
                 command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = password;
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
         }
 
-        public bool AuthenticateUser(string email, string password)
+
+        public async Task<bool> AuthenticateUser(string email, string password)
         {
-            bool validUser;
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
-                connection.Open();
+                await connection.OpenAsync();
                 command.Connection = connection;
-                command.CommandText = "select *from UsersInfo where email=@email and [password]=@password";
+                command.CommandText = "select * from UsersInfo where email=@email and [password]=@password";
                 command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = password;
-                validUser = command.ExecuteScalar() == null ? false : true;
+                var result = await command.ExecuteScalarAsync();
+                return result != null;
             }
-            return validUser;
         }
+
 
         public UserInfo GetNamesByEmail(string email)
         {
@@ -57,7 +58,7 @@ namespace єMessage.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT FirstName, LastName, Username, AvatarImage FROM UsersInfo WHERE email = @Email";
+                command.CommandText = "SELECT FirstName, LastName, Username, Status, AvatarImage FROM UsersInfo WHERE email = @Email";
                 command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
 
                 using (var reader = command.ExecuteReader())
@@ -67,6 +68,7 @@ namespace єMessage.Repositories
                         userInfo.FirstName = reader["FirstName"].ToString();
                         userInfo.LastName = reader["LastName"].ToString();
                         userInfo.Username = reader["Username"].ToString();
+                        userInfo.Status = reader["Status"].ToString();
 
                         // Отримання фото як масив байтів
                         if (reader["AvatarImage"] != DBNull.Value)
@@ -87,7 +89,89 @@ namespace єMessage.Repositories
             return userInfo;
         }
 
+        public async Task<bool> UpdateAvatarImageByEmailAsync(string email, byte[] avatarImage)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    command.Connection = connection;
+                    command.CommandText = @"
+                    UPDATE UsersInfo 
+                    SET AvatarImage = @AvatarImage 
+                    WHERE Email = @Email";
 
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+                    command.Parameters.Add("@AvatarImage", SqlDbType.VarBinary).Value = avatarImage;
+
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error updating user avatar.", ex);
+                }
+            }
+        }
+
+        public async Task UpdateFirstName(string email, string firstName)
+        {
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("UPDATE UsersInfo SET FirstName = @FirstName WHERE Email = @Email", connection))
+                {
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@Email", email);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task UpdateUsername(string email, string username)
+        {
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("UPDATE UsersInfo SET Username = @Username WHERE Email = @Email", connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Email", email);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task UpdateStatus(string email, string status)
+        {
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("UPDATE UsersInfo SET Status = @Status WHERE Email = @Email", connection))
+                {
+                    command.Parameters.AddWithValue("@Status", status);
+                    command.Parameters.AddWithValue("@Email", email);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task UpdateLastName(string email, string lastName)
+        {
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+                using (var command = new SqlCommand("UPDATE UsersInfo SET LastName = @LastName WHERE Email = @Email", connection))
+                {
+                    command.Parameters.AddWithValue("@LastName", lastName);
+                    command.Parameters.AddWithValue("@Email", email);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
 
         public bool IsUserRegistered(string email)
         {

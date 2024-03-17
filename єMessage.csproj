@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\back.png" />
     <None Remove="Images\camera.png" />
     <None Remove="Images\close.png" />
     <None Remove="Images\Email.png" />
@@ -20,6 +21,7 @@
     <None Remove="Images\phone.png" />
     <None Remove="Images\plus.png" />
     <None Remove="Images\send.png" />
+    <None Remove="Images\settings.png" />
     <None Remove="Images\splashScreen.jpg" />
     <None Remove="Images\user.png" />
   </ItemGroup>
@@ -31,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\camera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -47,6 +52,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\send.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\splashScreen.jpg">

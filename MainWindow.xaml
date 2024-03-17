@@ -29,6 +29,9 @@
             <DataTemplate DataType="{x:Type vsm:SplashScreenViewModel}">
                 <views:SplashScreen/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vsm:ProfileViewModel}">
+                <views:Profile/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

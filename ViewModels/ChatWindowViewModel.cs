@@ -63,6 +63,18 @@ namespace єMessage.ViewModels
             }
         }
 
+        private string _status;
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+
+
         private byte[] _photoSource;
         public byte[] PhotoSource
         {
@@ -76,8 +88,9 @@ namespace єMessage.ViewModels
 
 
         public ICommand SendCommand { get; set; }
+        public ICommand ToProfile { get; set; }
 
-        public ChatWindowViewModel(NavigationStore singUpViewNavigateStore, string email)
+        public ChatWindowViewModel(NavigationStore navigationStore, string email)
         {
             _userRepository = new UserRepository();
             Messages = new ObservableCollection<MessageModel>();
@@ -88,6 +101,7 @@ namespace єMessage.ViewModels
             UserInfo userInfo = _userRepository.GetNamesByEmail(email);
             Username = userInfo.Username;
             _photoSource = userInfo.AvatarImage;
+            Status = userInfo.Status;
 
             ws = new WebSocket("ws://bristle-lacy-suede.glitch.me/");
             ws.OnMessage += (sender, e) =>
@@ -124,6 +138,8 @@ namespace єMessage.ViewModels
                 ImageSource = "https://i.imgur.com/F9Nf9Fx.jpeg",
                 Messages = Messages
             });
+
+            ToProfile = new NavigationCommand<ProfileViewModel>(new NavigationServices<ProfileViewModel>(navigationStore, () => new ProfileViewModel(navigationStore, Email)));
         }
 
     }

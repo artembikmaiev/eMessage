@@ -99,19 +99,26 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="10 0 0 0">
                     <Label Content="{Binding Username}"
                            Foreground="White"
                            FontWeight="SemiBold"
+                           FontSize="14"
                            Margin="0 -5 0 -5"/>
                     
-                    <Label Content="Custom Status"
+                    <Label Content="{Binding Status}"
                            Foreground="Gray"
                            FontWeight="SemiBold"
-                           FontSize="10"
+                           FontSize="12"
                            Margin="0 -8 0 -5"/>
                 </StackPanel>
-                
+
+                <Button Width="36" Height="36" Margin="30 0 0 0" Background="Transparent" BorderBrush="Transparent" Command="{Binding ToProfile}">
+                    <Button.Content>
+                        <Image Source="/Images/settings.png"/>
+                    </Button.Content>
+                </Button>
+
             </StackPanel>
 
         </Grid>
@@ -156,6 +163,7 @@
 
             <ListView ItemsSource="{Binding SelectedContact.Messages}"
                       Background="Transparent"
+                      FontSize="16"
                       BorderThickness="0"
                       ItemContainerStyle="{StaticResource ChatItem}"
                       Margin="8 0 0 0"
