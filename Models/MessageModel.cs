@@ -12,6 +12,7 @@ namespace єMessage.Models
         public string UsernameColor { get; set; }
         public byte[] ImageSource { get; set; }
         public string Message { get; set; }
+        public string FileName { get; set; }
         public DateTime Time { get; set; }
         public bool IsNativeOrigin { get; set; }
         public bool? FirstMessage { get; set; }

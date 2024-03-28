@@ -36,7 +36,7 @@
                             Foreground="Gray"
                             FontWeight="Bold"
                             Margin="0 0 0 3"
-                            Click="ButtonMinimize_Click"/> 
+                            Click="ButtonMinimize_Click"/>
 
                     <Button Width="20" Height="20"
                             Content="☐"
@@ -44,7 +44,7 @@
                             BorderThickness="0"
                             Foreground="Gray"
                             FontWeight="Bold"
-                            Click="WindowStateButton_Click"/> 
+                            Click="WindowStateButton_Click"/>
 
                     <Button Width="20" Height="20"
                             Content="X"
@@ -56,7 +56,7 @@
                 </StackPanel>
 
             </Grid>
-            
+
         </Border>
 
         <Grid Background="#2F3136"
@@ -75,11 +75,23 @@
                    Margin="8 0 0 0"/>
 
             <ListView ItemsSource="{Binding Contacts}"
-                      SelectedItem="{Binding SelectedContact}"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      Grid.Row="1"
-                      ItemContainerStyle="{StaticResource ContactCards}"/>
+              SelectedItem="{Binding SelectedContact}"
+              Background="Transparent"
+              BorderThickness="0"
+              Grid.Row="1"
+              ItemContainerStyle="{StaticResource ContactCards}">
+            </ListView>
+
+            <!-- Кнопка додавання нового контакту -->
+            <Button Content="Add Contact"
+            Command="{Binding AddContactCommand}"
+            Padding="10,5"
+            Margin="10,327,10,0"
+            Background="#4CAF50"
+            Foreground="White"
+            BorderBrush="Transparent"
+            VerticalAlignment="Top"
+            Grid.Row="1"/>
 
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
@@ -105,7 +117,7 @@
                            FontWeight="SemiBold"
                            FontSize="14"
                            Margin="0 -5 0 -5"/>
-                    
+
                     <Label Content="{Binding Status}"
                            Foreground="Gray"
                            FontWeight="SemiBold"
@@ -149,7 +161,7 @@
                         <Image Width="20" Height="20"
                                RenderOptions.BitmapScalingMode="Fant"
                                Margin="5 0 5 0"
-                               Source="/Images/phone.png"/>     
+                               Source="/Images/phone.png"/>
 
                         <Image Width="20" Height="20"
                                RenderOptions.BitmapScalingMode="Fant"
@@ -157,7 +169,7 @@
                                Source="/Images/camera.png"/>
 
                     </StackPanel>
-                    
+
                 </Grid>
             </Border>
 
@@ -186,21 +198,24 @@
                             Grid.Column="1"
                             Margin=" 0 0 16 0">
 
-                    <Image Source="/Images/plus.png"
-                           Width="20" Height="20"
-                           RenderOptions.BitmapScalingMode="Fant"
-                           Margin="5 5 5 0"/>
+
+                    <Button Command="{Binding ChooseFileCommand}" Background="Transparent" Height="29" BorderBrush="Transparent">
+                        <Image Source="/Images/plus.png"
+                        Width="20" Height="20"
+                        RenderOptions.BitmapScalingMode="Fant"
+                        Margin="5 5 5 0"/>
+                    </Button>
 
                     <Image Source="/Images/send.png"
                            Width="20" Height="20"
                            RenderOptions.BitmapScalingMode="Fant"
-                           Margin="5 5 16 0"/>       
+                           Margin="5 5 16 0"/>
 
                 </StackPanel>
-                
+
             </Grid>
-            
+
         </Grid>
-        
+
     </Grid>
 </UserControl>

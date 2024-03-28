@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using єMessage.Models;
 using єMessage.ViewModels;
 using WebSocketSharp;
+using System.IO;
 
 namespace єMessage.Commands
 {
@@ -29,13 +30,25 @@ namespace єMessage.Commands
         {
             if (_chatWindowViewModel != null)
             {
-                string message = $"{_chatWindowViewModel.Username}: {_chatWindowViewModel.Message}";
+                if (_chatWindowViewModel.SelectedFileBytes != null && _chatWindowViewModel.SelectedFileBytes.Length > 0)
+                {
+                    // Convert the file bytes to a Base64 string
+                    string fileContentBase64 = Convert.ToBase64String(_chatWindowViewModel.SelectedFileBytes);
+                    // Send the file name and content in a single message
+                    string fileName = Path.GetFileName(_chatWindowViewModel.Message); // Assuming _chatWindowViewModel.Message contains the file name
+                    string fileMessage = $"/file {fileName}:{fileContentBase64}";
+                    _ws.Send(fileMessage);
 
-                // Відправка повідомлення через WebSocket
-                _ws.Send(message);
+                    _chatWindowViewModel.SelectedFileBytes = null;
+                    _chatWindowViewModel.Message = "";
+                }
+                else if (!string.IsNullOrEmpty(_chatWindowViewModel.Message))
+                {
+                    string message = $"{_chatWindowViewModel.Username}: {_chatWindowViewModel.Message}";
+                    _ws.Send(message);
 
-                // Очищення поля для введення повідомлення
-                _chatWindowViewModel.Message = "";
+                    _chatWindowViewModel.Message = "";
+                }
             }
         }
     }

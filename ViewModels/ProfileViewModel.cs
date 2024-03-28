@@ -20,7 +20,6 @@ namespace єMessage.ViewModels
     {
         private readonly NavigationStore _navigationStore;
         private readonly IUserRepository _userRepository;
-        //private readonly UserInfo _userInfo;
         private readonly string _email;
 
         private byte[] _photoSource;

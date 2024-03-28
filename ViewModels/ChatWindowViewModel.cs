@@ -86,10 +86,60 @@ namespace єMessage.ViewModels
             }
         }
 
+        private byte[] _selectedFileBytes;
+        public byte[] SelectedFileBytes
+        {
+            get { return _selectedFileBytes; }
+            set
+            {
+                _selectedFileBytes = value;
+                OnPropertyChanged(nameof(SelectedFileBytes));
+            }
+        }
+
+        private string _fileName;
+        public string FileName
+        {
+            get
+            {
+                return _fileName;
+            }
+            set
+            {
+                _fileName = value;
+                OnPropertyChanged(nameof(FileName));
+            }
+        }
+
+        public string EncodeFileToBase64(byte[] fileBytes)
+        {
+            return Convert.ToBase64String(fileBytes);
+        }
+
+        private string ExtractFileNameIfAny(string message)
+        {
+            // Спрощена перевірка, що повідомлення закінчується розширенням файла
+            var fileExtensions = new List<string> { ".jpg", ".png", ".pdf", ".docx", ".xlsx" };
+            foreach (var ext in fileExtensions)
+            {
+                if (message.EndsWith(ext, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Припускаємо, що повідомлення є ім'ям файла
+                    return message;
+                }
+            }
+
+            // Якщо збігів не знайдено, повертаємо null або порожній рядок
+            return null;
+        }
+
 
         public ICommand SendCommand { get; set; }
-        public ICommand ToProfile { get; set; }
-
+        public ICommand ToProfile { get; }
+        public ICommand ToAddContactCommand { get; }
+        public ICommand AddContactCommand { get; private set; }
+        public ICommand ChooseFileCommand { get; private set; }
+        public ICommand DownloadFileCommand { get; private set; }
         public ChatWindowViewModel(NavigationStore navigationStore, string email)
         {
             _userRepository = new UserRepository();
@@ -109,9 +159,13 @@ namespace єMessage.ViewModels
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     string message = e.Data;
+                    // Тут вам потрібно визначити, чи містить повідомлення ім'я файла, і якщо так, то встановити це ім'я файлу в `FileName`.
+                    string fileName = ExtractFileNameIfAny(message); // Це ваш метод для отримання імені файлу з повідомлення.
+
                     Messages.Add(new MessageModel
                     {
                         Message = message,
+                        FileName = fileName, // Встановити ім'я файла тут, якщо воно існує.
                         ImageSource = userInfo.AvatarImage,
                         Time = DateTime.Now,
                         IsNativeOrigin = true,
@@ -136,10 +190,15 @@ namespace єMessage.ViewModels
             {
                 Username = $"Загальний",
                 ImageSource = "https://i.imgur.com/F9Nf9Fx.jpeg",
-                Messages = Messages
+                Messages = Messages,
             });
 
+
             ToProfile = new NavigationCommand<ProfileViewModel>(new NavigationServices<ProfileViewModel>(navigationStore, () => new ProfileViewModel(navigationStore, Email)));
+            DownloadFileCommand = new DownloadFileCommand(this);
+            ToAddContactCommand = new NavigationCommand<AddContactViewModel>(new NavigationServices<AddContactViewModel>(navigationStore, () => new AddContactViewModel(navigationStore)));
+            AddContactCommand = new AddContactCommand(this, Contacts);
+            ChooseFileCommand = new ChooseFileCommand(this);
         }
 
     }
