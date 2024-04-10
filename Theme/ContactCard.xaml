@@ -4,11 +4,11 @@
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#292b2F"/>
+                <Setter Property="Background" Value="Gray"/>
             </Trigger>
         </Style.Triggers>
 
-        <Setter Property="Background" Value="#393B40"/>
+        <Setter Property="Background" Value="LightGray"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -29,10 +29,10 @@
 
                             <StackPanel>
                                 <Label Content="{Binding Username}"
-                                       Foreground="White"/>
+                                       Foreground="Black"/>
 
                                 <Label Content="{Binding LastMessage}"
-                                       Foreground="Gray"
+                                       Foreground="Black"
                                        FontSize="10"/>
                             </StackPanel>
                             

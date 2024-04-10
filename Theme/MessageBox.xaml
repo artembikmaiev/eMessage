@@ -9,7 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border CornerRadius="8"
-                            Background="#3e4147">
+                            Background="LightGray">
 
                         <Grid>
                             <TextBox VerticalAlignment="Stretch"
@@ -19,8 +19,8 @@
                                      Background="Transparent"
                                      TextWrapping="Wrap"
                                      BorderThickness="0"
-                                     Foreground="Gray"
-                                     CaretBrush="Gray"
+                                     Foreground="Black"
+                                     CaretBrush="Black"
                                      Margin="8 0 0 0"
                                      FontSize="16"
                                      Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -34,7 +34,7 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="10 0 0 0"
-                                       Foreground="DarkGray">
+                                       Foreground="Black">
 
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">

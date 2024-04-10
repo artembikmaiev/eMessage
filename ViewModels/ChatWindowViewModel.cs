@@ -196,8 +196,6 @@ namespace єMessage.ViewModels
 
             ToProfile = new NavigationCommand<ProfileViewModel>(new NavigationServices<ProfileViewModel>(navigationStore, () => new ProfileViewModel(navigationStore, Email)));
             DownloadFileCommand = new DownloadFileCommand(this);
-            ToAddContactCommand = new NavigationCommand<AddContactViewModel>(new NavigationServices<AddContactViewModel>(navigationStore, () => new AddContactViewModel(navigationStore)));
-            AddContactCommand = new AddContactCommand(this, Contacts);
             ChooseFileCommand = new ChooseFileCommand(this);
         }
 
