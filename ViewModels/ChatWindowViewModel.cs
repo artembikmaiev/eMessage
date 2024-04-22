@@ -159,13 +159,13 @@ namespace єMessage.ViewModels
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     string message = e.Data;
-                    // Тут вам потрібно визначити, чи містить повідомлення ім'я файла, і якщо так, то встановити це ім'я файлу в `FileName`.
-                    string fileName = ExtractFileNameIfAny(message); // Це ваш метод для отримання імені файлу з повідомлення.
+                    
+                    string fileName = ExtractFileNameIfAny(message); 
 
                     Messages.Add(new MessageModel
                     {
                         Message = message,
-                        FileName = fileName, // Встановити ім'я файла тут, якщо воно існує.
+                        FileName = fileName, 
                         ImageSource = userInfo.AvatarImage,
                         Time = DateTime.Now,
                         IsNativeOrigin = true,
